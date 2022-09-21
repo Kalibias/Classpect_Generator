@@ -1,4 +1,9 @@
+import datetime
 import random
+
+savefile = open("Characters.txt", "a")
+date = datetime.datetime.now()
+
 
 
 # List of colors.
@@ -25,21 +30,26 @@ def options():
         classes.extend(cclasses)
 
     characters = input(
-        "How many characters to generate? A number, recommended below 12 unless including custom terms. ")
+        "How many characters to generate? ")
     generatechars(characters)
 
 
 # Actual character generator.
 def generatechars(characters):
+    savefile.write(f"Date Generated {date.month , date.day, date.year}\n\n")
     for num in range(0, int(characters)):
-        print(random.choice(colortypes) + " " + random.choice(colors) + "-eyed " + random.choice(
-            classes) + " of " + random.choice(aspects))
+        result = random.choice(colortypes) + " " + random.choice(colors) + "-eyed " + random.choice(
+            classes) + " of " + random.choice(aspects)
+        print(result)
+        savefile.write(result + "\n")
     repeat_prompt()
+
+
+
 
 
 def repeat_prompt():
     repeat = str(input("Would you like to reroll? "))
-    print(repeat)
     if repeat.lower() == 'y':
         ans = int(input("How many? "))
         generatechars(ans)
@@ -48,4 +58,5 @@ def repeat_prompt():
 
 
 # This is where the program starts
+
 options()
