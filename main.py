@@ -38,8 +38,8 @@ def options():
 def generatechars(characters):
     savefile.write(f"Date Generated {date.month , date.day, date.year}\n\n")
     for num in range(0, int(characters)):
-        result = random.choice(colortypes) + " " + random.choice(colors) + "-eyed " + random.choice(
-            classes) + " of " + random.choice(aspects)
+        result = f"{random.choice(colortypes)} {random.choice(colors)}-eyed {random.choice(classes)} {random.choice(aspects)}"
+
         print(result)
         savefile.write(result + "\n")
     repeat_prompt()
